@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.calculator {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 250px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: -200px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.mode-toggle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.history {
+  margin-top: 20px;
+}
+
+.dark-mode {
+  background-color: #222;
+  color: #fff;
+}

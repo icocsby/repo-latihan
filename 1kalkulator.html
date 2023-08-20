@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="1styles.css">
+</head>
+<body>
+  <div class="container calculator">
+    <input type="text" id="result" class="form-control" readonly>
+
+    <div class="mode-toggle">
+      <label for="dark-mode">Dark Mode</label>
+      <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-danger" onclick="clearResult()">AC</button>
+      <button class="btn btn-warning" onclick="operate('+/-')">+/-</button>
+      <button class="btn btn-info" onclick="operate('%')">%</button>      
+      <button class="btn btn-primary" onclick="appendToResult('/')">÷</button>
+
+      <button class="btn btn-primary" onclick="appendToResult('7')">7</button>
+      <button class="btn btn-primary" onclick="appendToResult('8')">8</button>
+      <button class="btn btn-primary" onclick="appendToResult('9')">9</button>
+      <button class="btn btn-primary" onclick="appendToResult('*')">x</button>
+
+      <button class="btn btn-primary" onclick="appendToResult('4')">4</button>
+      <button class="btn btn-primary" onclick="appendToResult('5')">5</button>
+      <button class="btn btn-primary" onclick="appendToResult('6')">6</button>
+      <button class="btn btn-primary" onclick="appendToResult('-')">-</button>
+
+      <button class="btn btn-primary" onclick="appendToResult('1')">1</button>
+      <button class="btn btn-primary" onclick="appendToResult('2')">2</button>
+      <button class="btn btn-primary" onclick="appendToResult('3')">3</button>
+      <button class="btn btn-primary" onclick="appendToResult('+')">+</button>
+
+      <button class="btn btn-danger" onclick="clearResult()">C</button>
+      <button class="btn btn-primary" onclick="appendToResult('0')">0</button>
+      <button class="btn btn-primary" onclick="appendToResult('.')">.</button>
+      <button class="btn btn-success" onclick="calculate()">=</button>
+    </div>
+    <div class="history">
+      <h4>History</h4>
+      <ul id="history-list"></ul>
+    </div>
+  </div>
+  <script src="1script.js"></script>
+</body>
+</html>
