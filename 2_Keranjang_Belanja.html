@@ -2,12 +2,12 @@
 <html>
 
 <head>
-  <title>Keranjang Belanja Vue.js</title>
+  <title>Project 2 : Keranjang Belanja menggunakan VueJS</title>
 </head>
 
 <body>
   <div id="app">
-    <h1>Keranjang Belanja</h1>
+    <h1>Project 2 : Keranjang Belanja menggunakan VueJS</h1>
 
     <!-- Tabel Stok Barang -->
     <h2>Stok Barang</h2>
@@ -18,7 +18,7 @@
           <th>Deskripsi</th>
           <th>Jumlah Stok</th>
           <th>Harga per Pc</th>
-          <th>Tindakan</th>
+          <th>Action Button</th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +42,7 @@
           <th>Nama Barang</th>
           <th>Quantity</th>
           <th>Total Harga</th>
-          <th>Tindakan</th>
+          <th>Action Button</th>
         </tr>
       </thead>
       <tbody>
@@ -88,6 +88,12 @@
             stock: 20,
             price: 2000,
           },
+          {
+            name: 'Sarimie',
+            description: 'Mie isi Duo',
+            stock: 40,
+            price: 1000,
+          },
         ],
         cart: [],
       },
@@ -123,7 +129,6 @@
           stockItem.stock += removedItem.quantity;
         },
         checkout: function () {
-          // Implement your checkout logic here
           alert('Checkout berhasil');
           this.cart = [];
         },
