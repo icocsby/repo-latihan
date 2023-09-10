@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Keranjang Belanja Vue.js</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Keranjang Belanja</h1>
+
+    <!-- Tabel Stok Barang -->
+    <h2>Stok Barang</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nama Barang</th>
+          <th>Deskripsi</th>
+          <th>Jumlah Stok</th>
+          <th>Harga per Pc</th>
+          <th>Tindakan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in stock" :key="index">
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.stock }}</td>
+          <td>{{ item.price }}</td>
+          <td>
+            <button @click="addToCart(index)">Add to Cart</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Keranjang Belanja -->
+    <h2>Keranjang Belanja</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nama Barang</th>
+          <th>Quantity</th>
+          <th>Total Harga</th>
+          <th>Tindakan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(cartItem, index) in cart" :key="index">
+          <td>{{ cartItem.name }}</td>
+          <td>{{ cartItem.quantity }}</td>
+          <td>{{ cartItem.total }}</td>
+          <td>
+            <button @click="deleteCartItem(index)">Delete Item</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Grand Total -->
+    <div>
+      <h3>Grand Total: {{ grandTotal }}</h3>
+      <button @click="checkout">Checkout</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        stock: [
+          {
+            name: 'Indomie',
+            description: 'Indomie seleraku',
+            stock: 10,
+            price: 1500,
+          },
+          {
+            name: 'Popmie',
+            description: 'Anak Perusahaan Indomie',
+            stock: 15,
+            price: 3000,
+          },
+          {
+            name: 'Mie Sedap',
+            description: 'Competitor berat Indomie',
+            stock: 20,
+            price: 2000,
+          },
+        ],
+        cart: [],
+      },
+      computed: {
+        grandTotal: function () {
+          return this.cart.reduce((total, item) => total + item.total, 0);
+        },
+      },
+      methods: {
+        addToCart: function (index) {
+          if (this.stock[index].stock > 0) {
+            const selectedItem = this.stock[index];
+            const existingCartItem = this.cart.find((item) => item.name === selectedItem.name);
+
+            if (existingCartItem) {
+              existingCartItem.quantity++;
+              existingCartItem.total = existingCartItem.quantity * existingCartItem.price;
+            } else {
+              this.cart.push({
+                name: selectedItem.name,
+                quantity: 1,
+                price: selectedItem.price,
+                total: selectedItem.price,
+              });
+            }
+
+            selectedItem.stock--;
+          }
+        },
+        deleteCartItem: function (index) {
+          const removedItem = this.cart.splice(index, 1)[0];
+          const stockItem = this.stock.find((item) => item.name === removedItem.name);
+          stockItem.stock += removedItem.quantity;
+        },
+        checkout: function () {
+          // Implement your checkout logic here
+          alert('Checkout berhasil');
+          this.cart = [];
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
